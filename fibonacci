@@ -1,0 +1,34 @@
+def fibonacci(n):
+    a, b = 0, 1
+    sequence = []
+    while a < n:
+        sequence.append(a)
+        a, b = b, a + b
+    return sequence
+
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+def prime_fibonacci(n):
+    fib_numbers = fibonacci(n)
+    prime_fibs = [num for num in fib_numbers if is_prime(num)]
+    return prime_fibs
+
+if __name__ == "__main__":
+    limit = 1000
+    primes_in_fibonacci = prime_fibonacci(limit)
+    print(f"Prime Fibonacci numbers less than {limit}: {primes_in_fibonacci}")
+    total_primes = len(primes_in_fibonacci)
+    print(f"Total prime Fibonacci numbers found: {total_primes}")
+
+    # Дополнительная информация
+    if total_primes > 0:
+        print(f"First prime Fibonacci number: {primes_in_fibonacci[0]}")
+        print(f"Last prime Fibonacci number: {primes_in_fibonacci[-1]}")
+    else:
+        print("Нет простых чисел Фибоначчи в заданном диапазоне.")
